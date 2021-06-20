@@ -25,14 +25,19 @@ class AuthorsView extends Component {
                             <NavLink to={`${match.url}/${author.id}`}>{author.name}</NavLink></li>
                     ))}
                 </ul>
+                
                 <Route
-                    path={`${match.path}/:authorId`}
-                    render={props => {
-                        return <AuthorBook {...props} authors={this.state.authors} />
-                    }}
-                />
+          path={`${match.path}/:authorId`}
+          render={props => {
+            const bookId = Number(props.match.params.authorId);
+            const author = this.state.authors.find(({ id }) => id === bookId);
+
+            return author && <AuthorBook {...props} books={author.books} />;
+          }}
+        />
                 </>
-    )}
+        )
+    }
 }
 
 export default AuthorsView;

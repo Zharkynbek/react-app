@@ -9,11 +9,12 @@ class BookDetailsView extends Component {
         id: null,
         imgUrl: null,
         title: null,
+        author: null
     }
 
     async componentDidMount() {
     const {bookId} = this.props.match.params
-        const response = await Axios.get(`http://localhost:4040/books/${bookId}`)
+        const response = await Axios.get(`http://localhost:4040/books/${bookId}?_expand=author`)
         console.log(response.data.descr);  
 
         this.setState({...response.data})
@@ -27,6 +28,7 @@ class BookDetailsView extends Component {
                 <h2>Title: {title}</h2>
                 <h3>Genre: {genre}</h3>
                 <img src={imgUrl} alt="" />
+                {this.state.author && <p>Author: { this.state.author.name}</p>}
                 <p>{ descr}</p>
                 </>
         )
