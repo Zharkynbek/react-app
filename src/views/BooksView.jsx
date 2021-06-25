@@ -15,16 +15,23 @@ class BooksView extends Component {
     }
     render() {
         return (
-        <>
-                <h1>This is books</h1>
-                <ul>
-                    {this.state.books.map(book => (
-                        <li key={book.id}>
-                            <Link to={`${this.props.match.url}/${book.id}`}>{book.title}</Link></li>
-                    ))}
-                </ul>
-                </>
-    )}
+          <>
+            <h1>This is books</h1>
+            <ul>
+              {this.state.books.map((book) => (
+                <li key={book.id}>
+                  <Link
+                    to={{
+                      pathname: `${this.props.match.url}/${book.id}`,
+                    }}
+                  >
+                    {book.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </>
+        );}
 }
 
 export default BooksView;

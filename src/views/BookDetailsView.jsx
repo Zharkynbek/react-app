@@ -24,6 +24,7 @@ class BookDetailsView extends Component {
         const {imgUrl, title, genre, descr} = this.state
         return (
             <>
+                <button type="button" onClick={() => this.props.history.push("/books")}>Go Back To Books</button>
                 <h1>Page of one book {this.props.match.params.bookId}</h1>
                 <h2>Title: {title}</h2>
                 <h3>Genre: {genre}</h3>
